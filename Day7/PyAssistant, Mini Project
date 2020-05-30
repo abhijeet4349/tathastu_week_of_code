@@ -26,6 +26,7 @@ def speak(audioString):
     clock.tick(10)
       while pygame.mixer.music.get_busy():
          pygame.event.poll()
+         clock.tick(10)
     
     
 def recordAudio():
@@ -42,8 +43,22 @@ def recordAudio():
         print("Google speech recognizer could not understand audio")
     except sr.RequestError as e:
         print("Could not request service ; [0]",format(e))
-        
-        
+    return data
+    
+    
+    
+def jarvis(data):
+    if "how are you" in data:
+       speak("I am fine")
+    elif "what time is it" in data:
+       speak(ctime())
+    elif "where is" in data:
+         data=data.split(" ")
+         location=data[2]
+         speak("hold on Abhijeet,i will show you where" +location+ "is,")
+         wb.open_new_tab("https://wwww.google.nl/maps/place/" + location +"/%amp;")
+     else :
+         speak("..........i did not get what you said !")        
     
 x=0
 print("start...")

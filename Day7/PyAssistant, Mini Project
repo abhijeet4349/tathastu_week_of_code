@@ -9,7 +9,7 @@ import pygame
 from pygame import mixer
 
 def speak(audioString):
-    gobal x
+    global x
     b=audioString
     if len(b)==0:
        return
@@ -24,9 +24,9 @@ def speak(audioString):
     
     clock=pygame.title.Clock()
     clock.tick(10)
-      while pygame.mixer.music.get_busy():
-         pygame.event.poll()
-         clock.tick(10)
+    while pygame.mixer.music.get_busy():
+        pygame.event.poll()
+        clock.tick(10)
     
     
 def recordAudio():
@@ -34,7 +34,7 @@ def recordAudio():
     with sr.Microphone as source:
          print("Speak...")
          audio=r.listen(source)
-         print("heard.. waiting for google to recognize audio)
+         print("heard.. waiting for google to recognize audio")
     data=""
     try:
         data=r.recognize_google(audio)
@@ -57,8 +57,9 @@ def jarvis(data):
          location=data[2]
          speak("hold on Abhijeet,i will show you where" +location+ "is,")
          wb.open_new_tab("https://wwww.google.nl/maps/place/" + location +"/%amp;")
-     else :
-         speak("..........i did not get what you said !")        
+    else:
+     	 speak("..........i did not get what you said !")
+                
     
 x=0
 print("start...")
@@ -67,5 +68,3 @@ data=recordAudio()
 jarvis(data)
 speak("Turning off the program,")
 print("Run complete")
-
-    

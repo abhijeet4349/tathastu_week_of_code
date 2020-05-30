@@ -22,7 +22,7 @@ def speak(audioString):
     
     x+=1
     
-    clock=pygame.title.Clock()
+    clock=pygame.time.Clock()
     clock.tick(10)
     while pygame.mixer.music.get_busy():
         pygame.event.poll()
@@ -31,7 +31,7 @@ def speak(audioString):
     
 def recordAudio():
     r=sr.Recognizer()
-    with sr.Microphone as source:
+    with sr.Microphone() as source:
          print("Speak...")
          audio=r.listen(source)
          print("heard.. waiting for google to recognize audio")
